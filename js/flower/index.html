@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const dai = {
+            name: 'dai',
+            age: 18,
+            sex: 'man',
+            hobby: ['sing', 'dance', 'swimming'],
+            sendflower(target) {
+                target.receiveflower(dai);
+            }
+        }
+        const xm = {
+            name: 'xm',
+            age: 18,
+            sex: 'man',
+            xq: 50,
+            receiveflower(target) {
+                if (xm.xq < 80) {
+                    console.log('gun~~~~')
+                    return;
+                }
+                console.log(target.name + '送了花');
+            }
+        }
+        const xh = {
+            name: 'xh',
+            age: 18,
+            sex: 'man',
+            receiveflower(target) {
+
+                setTimeout(function () {
+                    xm.xq = 99,
+                        xm.receiveflower(target);
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+
+</html>
