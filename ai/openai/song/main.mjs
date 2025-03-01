@@ -1,7 +1,7 @@
 import OpenAI from 'openai'
 const openai = new OpenAI({
     //付费
-    apiKey: 'sk-5PUDrQhFqCVr0KluhSbYcCgIx6S21dNcxGJ0xhpo3BEtIhRw',
+    apiKey: 'sk-nwDEG8UhIM78Da5xcPLwsRv0vj83yCVviIxegcYLHlqGFkAe',
 
     baseURL: 'https://api.302.ai/v1'
 
