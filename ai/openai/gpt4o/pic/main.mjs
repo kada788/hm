@@ -4,7 +4,7 @@ dotenv.config();
 // console.log(process.env.OpenAI_API_KEY, '////')
 const client = new OpenAi({
     apiKey: process.env.OpenAI_API_KEY,
-    baseURL: 'https://api.302.ai/v1'//转发
+    baseURL: 'https://api.302.ai/v1'//转发地址
 })
 //主函数  执行的入口，单点
 // 函数申明
