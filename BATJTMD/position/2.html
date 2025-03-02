@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            margin: 20px;
+            padding: 5px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            background-color: rgba(red, green, blue, 0.5);
+            position: relative;
+            top: 20px;
+
+
+
+        }
+
+        #box2 {
+            margin: 20px;
+            padding: 5px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            background-color: yellow;
+        }
+
+        #box3 {
+            position: absolute;
+
+            width: 40px;
+            height: 40px;
+            background-color: pink;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- box1 在box2上面  
+         html 文档流 和 css 结合 样式生效  盒模型 
+    -->
+    <div id="box1">
+
+    </div>
+    <div id="box2">
+        <div id="box3">
+            box3
+        </div>
+    </div>
+</body>
+
+</html>
