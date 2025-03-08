@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div id="ep2">
+
+            <span id="content">一心只为进大厂的小白</span>
+            <input type="text" id="input" value="">
+            <input type="button" id="save" value="Save">
+            <input type="button" id="cancel" value="Cancel">
+
+
+        </div>
+    </div>
+
+    <script>
+
+        const content = document.getElementById('content');
+        const input = document.getElementById('input');
+        const save = document.getElementById('save');
+        const cancel = document.getElementById('cancel');
+
+        function convertText() {
+            content.style.display = "inline";
+            input.style.display = "none";
+            save.style.display = "none";
+            cancel.style.display = "none";
+        }
+
+        function editText() {
+            content.style.display = "none";
+            input.style.display = "inline";
+            save.style.display = "inline";
+            cancel.style.display = "inline";
+        }
+
+        convertText();
+
+        content.addEventListener('click', function () {
+
+            editText();
+            input.value = content.innerText;
+        });
+
+        save.addEventListener('click', function () {
+            content.innerHTML = input.value;
+            convertText();
+        });
+
+        cancel.addEventListener('click', function () {
+            convertText();
+        });
+
+    </script>
+
+</body>
+
+</html>
