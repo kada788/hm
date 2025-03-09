@@ -1,0 +1,19 @@
+{
+  "name": "crawl",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "csv-writer": "^1.6.0",
+    "request-promise": "^4.2.6",
+    "require": "^2.4.20",
+    "require-promise": "^1.0.1"
+  }
+}
