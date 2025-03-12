@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器</title>
+</head>
+
+<body>
+    <button id="btn">关闭定时器</button>
+    <script>
+        const btn = document.getElementById('btn')
+
+        btn.addEventListener('click', function () {
+            clearInterval(timer)
+        })
+
+        setTimeout(function () {
+            console('----')
+        }, 1000)
+
+        const timer = setInterval(function () {
+            console.log('qa')
+        }, 1000)
+
+    </script>
+</body>
+
+</html>
