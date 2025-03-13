@@ -27,6 +27,9 @@
         const interval = customSetInterval(function () {
             console.log('拿下哔哩哔哩')
         }, 1000)
+        setTimeout(() => {
+            interval()
+        }, 5000)
     </script>
 
 
