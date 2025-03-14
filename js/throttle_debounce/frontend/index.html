@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="INPUT">搜索用户</label>
+    <input type="text" id="INPUT" placeholder="请输入用户名">
+    <ul id="oUl">
+
+    </ul>
+    <script>
+        const Oinput = document.getElementById("INPUT")
+        const Oul = document.getElementById("oUl")
+        const debounceNameSearch = debounce(handleNameSearch, 500)
+        Oinput.addEventListener("keyup", debounceNameSearch)
+
+        function debounce(fn, delay) {
+            // 防抖
+            //高阶函数
+            let id;
+            return function () {
+
+                clearTimeout(id)
+                id = setTimeout(fn, delay);
+
+            }
+        }
+
+        function handleNameSearch() {
+
+            let value = Oinput.value.trim();
+            if (value === '') {
+                Oinput.innerHTML = '';
+                return;
+            }
+
+
+            fetch("http://localhost:3001/users")
+                .then(res => res.json())
+                .then(users => {
+                    console.log(users)
+                    const filterUsers = users.filter(
+                        user => user.username.includes(value)
+                    )
+
+                    const u = filterUsers.map(user => `
+                    <li>
+                        ${user.username
+                        }
+                        </li>
+                    `).join('');
+                    Oul.innerHTML = u;
+                }
+                )
+
+        }
+    </script>
+
+</body>
+
+</html>
