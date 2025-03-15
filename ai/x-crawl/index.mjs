@@ -8,7 +8,7 @@ const crawlApp = createCrawl({
 
 const crawlOpenAIApp = createCrawlOpenAI({
     clientOptions: {
-        apiKey: 'sk-498e28657a804204a2eafa653d8681de', // 你的 OpenAI API 密钥
+        apiKey: '', // 你的 OpenAI API 密钥
         baseURL: 'https://api.deepseek.com',
     },
     defaultModel: {
