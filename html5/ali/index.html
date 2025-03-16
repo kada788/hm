@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿里双11</title>
+    <script>
+        // 阻塞 来动态设置 html font-size
+        // 立即执行函数 
+        (function () {
+            function calc() {
+                const w = document.documentElement.clientWidth;
+
+                document.documentElement.style.fontSize = `${w / 10}px`
+                console.log(`${w / 10}px`);
+            }
+            calc();
+            window.onresize = function () {
+                calc();
+            }
+
+        })()
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 10rem;
+            height: 2rem;
+            background-color: red;
+
+        }
+
+        .box2 {
+            width: 5rem;
+            height: 2rem;
+            background-color: green;
+            display: inline-block;
+        }
+
+        .box3 {
+            width: 5rem;
+            height: 2rem;
+            background-color: blue;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <div class="box"></div>
+        <div style="font-size: 0;">
+            <div class="box2" style="font-size:20px ;color:white">111</div>
+            <div class="box3">222</div>
+        </div>
+    </div>
+</body>
+
+</html>
