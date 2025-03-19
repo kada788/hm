@@ -46,7 +46,7 @@ const main = async () => {
     我给一个产品写了一个评论：${review}
     这个评论是${sentiment}的。
     请总结一下这个评论。 `
-    const result = await get_completion(prompt)
-    console.log(result)
+    const result1 = await get_completion(prompt)
+    console.log(result1)
 }
 main()
