@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 Couter</title>
+    <!-- bug 修复：将 livs 修改为 libs -->
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{count}}</h1>
+        <button @click="increment">+1</button>
+    </div>
+    <script type="module">
+
+        const {
+            createApp, // 创建Vue应用
+            ref // 响应式数据
+        } = Vue
+        createApp({
+            // 数据     
+            setup() {
+                const count = ref(0)// 响应式对象
+                const increment = () => {
+                    count.value++;
+                }
+                return {
+                    count,
+                    increment
+                }
+            }
+
+        }).mount('#root') // 挂载点
+
+
+
+    </script>
+
+</body>
+
+</html>
