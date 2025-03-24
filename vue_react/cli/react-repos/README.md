@@ -22,7 +22,13 @@
     - 区别
       - .vue  .jsx
       - template/script/css 三段式  函数即组件
-      - vue好入门，api 丰富，react难，但纯粹
+      - vue好入门，api 丰富，react难，但纯粹(js高手)
+      - vue css 在组件内部， react css 单独文件
+      - 组（html + css + js）和完成一件功能的拆分
+      - vue template , react JSX
+        - JSX 是react 最漂亮的部分，在函数中，最方便的表达UI部分
+           html（XML）in js
+        - 不能写class，用className
   - 组件类
     - 封装组件 import +  export default 功能的拆分
     - 函数（构造）组件， return html是必须的 
