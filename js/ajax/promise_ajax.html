@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 创建一个无序列表，用于后续展示成员列表，设置其 id 为 memberList -->
+    <ul id="memberList"></ul>
+    <script>
+        /**
+         * 获取页面上 id 为 memberList 的无序列表元素，后续可能用于操作该列表
+         * @type {HTMLElement}
+         */
+        const oUL = document.getElementById('memberList');
+        /**
+         * 定义一个函数 grtJSON，用于封装基于 Promise 的异步请求
+         * @param {string} url - 请求的目标 URL
+         * @returns {Promise} - 返回一个 Promise 对象，用于处理异步操作的结果
+         */
+        const grtJSON = function (url) {
+            // 返回一个 Promise 对象，用于处理异步操作
+            return new Promise((resolve, reject) => {
+                // 模拟一个 3 秒的延迟，模拟异步请求的耗时
+                setTimeout(() => {
+                    // 3 秒后，将 Promise 的状态设置为 resolved，并传递一个包含成功信息的对象
+                    resolve({ message: 'ok' })
+                    reject({ message: 'error' })
+                }, 3000)
+            })
+        }
+        // 注释说明这是基于 Promise 的 AJAX 请求方式，同时提到 fetch() 也是常用的基于 Promise 的请求方式
+        // 基于promise的ajax
+        // fetch()
+        // 调用 grtJSON 函数，传入 GitHub API 的组织成员列表接口地址
+        // 该函数返回一个 Promise 对象，可以使用 then 方法处理成功响应
+        grtJSON('')
+            // 当 Promise 状态变为 resolved 时，执行回调函数
+            // 将响应数据作为参数传递给回调函数
+            .then(data => {
+                // 在控制台打印响应数据
+                console.log(data);
+            })
+    </script>
+
+</body>
+
+</html>

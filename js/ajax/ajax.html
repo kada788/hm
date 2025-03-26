@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 定义一个无序列表，用于展示成员列表，id为memberList -->
+    <ul id="memberList"></ul>
+    <script>
+        /**
+         * 该脚本的主要功能是通过 XMLHttpRequest 对象从 GitHub API 获取 lemoncode 组织的成员信息，并将其打印到控制台。
+         * 步骤如下：
+         * 1. 获取页面上的 memberList 元素。
+         * 2. 创建一个 XMLHttpRequest 对象。
+         * 3. 配置请求，设置请求方法为 GET，请求的 URL 为 GitHub API 的组织成员列表。
+         * 4. 监听请求状态的变化，当请求完成且状态码为 200 时，解析响应数据并打印到控制台。
+         * 5. 发送请求。
+         */
+        // 获取id为memberList的ul元素
+        const oUL = document.getElementById('memberList');
+        // fetch 是 JavaScript 中主动拉取数据的一种方式，而 XMLHttpRequest 是 fetch 的前辈
+        // 实例化一个 XMLHttpRequest 请求对象，用于与服务器进行异步通信
+        const xhr = new XMLHttpRequest();
+        // 配置请求，使用 GET 方法，请求 https://api.github.com/orgs/lemoncode/members 的数据，第三个参数 false 表示同步请求（不推荐在实际应用中使用）
+        xhr.open('GET', 'https://api.github.com/orgs/lemoncode/members', false);
+        // 监听请求状态的变化
+        xhr.onreadystatechange = function () {
+            // 当请求状态为 4（请求已完成）且状态码为 200（请求成功）时
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                // 将响应的文本数据解析为 JSON 对象
+                const data = JSON.parse(xhr.responseText);
+                // 将解析后的数据打印到控制台
+                console.log(data);
+            }
+        }
+        // 发送请求
+        xhr.send()
+    </script>
+</body>
+
+</html>
