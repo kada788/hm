@@ -9,72 +9,117 @@
 </head>
 
 <body>
+    <!-- 创建一个 canvas 元素，用于 WebGL 渲染 3D 地球 -->
     <canvas id="webglcanvas"></canvas>
     <script>
-        //3d 地球  
-        let canvas,// 3d 容器
-            camera,// 镜头
-            scene,// 场景
-            renderer,// 渲染器
-            group;// 组
-        let mouseX = 0, mouseY = 0;// mousemove 坐标
-        let windowHalfX = window.innerWidth / 2;// 球心
+        // 3D 地球项目相关变量声明
+        // 3D 容器，对应上面创建的 canvas 元素
+        let canvas,
+            // 镜头，用于定义视角和观察方向
+            camera,
+            // 场景，包含所有 3D 对象
+            scene,
+            // 渲染器，将场景渲染到 canvas 上
+            renderer,
+            // 组，用于管理多个 3D 对象
+            group;
+        // 鼠标移动时的坐标
+        let mouseX = 0, mouseY = 0;
+        // 窗口宽度的一半，作为球心的 x 坐标参考
+        let windowHalfX = window.innerWidth / 2;
+        // 窗口高度的一半，作为球心的 y 坐标参考，这里原代码变量名拼写错误，应为 windowHalfY
         let windoeHalfY = window.innerHeight / 2;
-        init();
-        animate();
-        // 准备
 
+        // 初始化 3D 场景
+        init();
+        // 开始动画循环
+        animate();
+
+        /**
+         * 初始化 3D 地球场景
+         */
         function init() {
+            // 通过 id 获取 canvas 元素
             canvas = document.getElementById('webglcanvas');
-            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000);//实例化 相机
-            // 相机离scene场景
+            // 实例化透视相机，设置视角、宽高比、近裁剪面和远裁剪面
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000);
+            // 设置相机在 z 轴上的位置
             camera.position.z = 500;
 
-            scene = new THREE.Scene(); //实例化 场景
-            scene.background = new THREE.Color(0xffffff)//背景色
+            // 实例化场景
+            scene = new THREE.Scene();
+            // 设置场景的背景颜色为白色
+            scene.background = new THREE.Color(0xffffff);
 
-            group = new THREE.Group();//组
+            // 实例化一个组，用于管理 3D 对象
+            group = new THREE.Group();
+            // 将组添加到场景中
             scene.add(group);
 
-            //纹理加载器
+            // 创建纹理加载器
             let loader = new THREE.TextureLoader();
+            // 加载地球纹理图片
             loader.load('land_ocean_ice_cloud_2048.jpg', function (texture) {
-                let geometry = new THREE.SphereGeometry(200, 20, 20); //球体
-                let material = new THREE.MeshBasicMaterial({// 材质
+                // 创建一个球体几何体
+                let geometry = new THREE.SphereGeometry(200, 20, 20);
+                // 创建一个基础材质，使用加载的纹理
+                let material = new THREE.MeshBasicMaterial({
                     map: texture
                 });
-                let mesh = new THREE.Mesh(geometry, material);// 网格
+                // 创建一个网格对象，将几何体和材质组合
+                let mesh = new THREE.Mesh(geometry, material);
+                // 将网格对象添加到组中
                 group.add(mesh);
 
-                //渲染器
+                // 实例化 WebGL 渲染器
                 renderer = new THREE.WebGLRenderer({
                     canvas: canvas,
+                    // 开启抗锯齿
                     antialias: true
                 });
+                // 设置渲染器的尺寸为窗口大小
                 renderer.setSize(window.innerWidth, window.innerHeight);
-                //renderer.render(scene, camera); 
+                // 原代码注释掉的渲染语句，可能用于测试
+                // renderer.render(scene, camera);
+                // 为文档添加鼠标移动事件监听器
                 document.addEventListener('mousemove', onDocumentMouseMove, false);
-            })
-
-
+            });
         }
 
+        /**
+         * 处理鼠标移动事件
+         * @param {MouseEvent} event - 鼠标移动事件对象
+         */
         function onDocumentMouseMove(event) {
+            // 计算鼠标相对于窗口中心的 x 坐标偏移
             mouseX = event.clientX - windowHalfX;
+            // 计算鼠标相对于窗口中心的 y 坐标偏移，这里原代码变量名拼写错误，应为 windowHalfY
             mouseY = event.clientY - windoeHalfY;
         }
 
+        /**
+         * 动画循环函数，使用 requestAnimationFrame 实现平滑动画
+         */
         function animate() {
-            // 递归  屏幕的刷帧率 60帧/s
+            // 递归调用 animate 函数，与屏幕刷新率同步
             requestAnimationFrame(animate);
+            // 调用渲染函数
             render();
         }
 
+        /**
+         * 渲染函数，更新相机位置和组的旋转，并渲染场景
+         */
         function render() {
+            // 平滑更新相机的 x 坐标，使其靠近鼠标位置
             camera.position.x += (mouseX - camera.position.x) * 0.05;
+            // 平滑更新相机的 y 坐标，使其靠近鼠标位置
             camera.position.y += (mouseY - camera.position.y) * 0.05;
+            // 让相机看向场景中心
             camera.lookAt(scene.position);
+            // 让组绕 y 轴旋转
             group.rotation.y -= 0.005;
+            // 渲染场景
             renderer.render(scene, camera);
         }
     </script>

@@ -14,21 +14,39 @@
         // DOM 3D 绘制的容器
         const canvas = document.getElementById('webglcanvas');
         // 绘制的上下文
-        const ctx = canvas.getContext('2d')
-        // 调用绘制API
+        const ctx = canvas.getContext('2d');
+        // 调用绘制API，开始一个新的路径
         ctx.beginPath();
-        //圆心
+
+        // 计算圆心位置
+        // 圆心横坐标，取画布宽度的一半
         let x = canvas.width / 2;
+        // 圆心纵坐标，取画布高度的一半
         let y = canvas.height / 2;
+
+        // 圆的半径
         let radius = 70;
+        // 圆弧的起始角度，以弧度为单位，0 表示圆的最右侧
         let startAngle = 0;
+        // 圆弧的结束角度，以弧度为单位，2 * Math.PI 表示一个完整的圆
         let endAngle = 2 * Math.PI;
+        // 是否逆时针绘制，false 表示顺时针
         let counterClickwise = false;
-        ctx.arc(x, y, radius, startAngle, endAngle, canvas)
+
+        // 在画布上绘制一个圆形路径
+        // 参数依次为圆心横坐标、圆心纵坐标、半径、起始角度、结束角度、是否逆时针绘制
+        ctx.arc(x, y, radius, startAngle, endAngle, counterClickwise);
+
+        // 设置填充颜色为绿色
         ctx.fillStyle = 'green';
+        // 设置描边颜色为红色
         ctx.strokeStyle = 'red';
+        // 设置描边的线宽为 5 像素
         ctx.lineWidth = 5;
+
+        // 填充圆形路径
         ctx.fill();
+        // 对圆形路径进行描边
         ctx.stroke();
 
         ctx.closePath();
