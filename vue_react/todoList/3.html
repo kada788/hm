@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .done {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" id="todo-input" @keyup.enter="add" v-model="hobby.title" placeholder="请输入">
+        <ul>
+            <li v-for="hobby in hobbies">
+                <span :class="{done:hobby.done}">{{hobby.title}}</span>
+            </li>
+        </ul>
+
+    </div>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+    <script>
+        const App = {
+            data() {
+                return {
+
+                    hobbies: [
+                        { title: "吃饭", done: false },
+                        { title: "睡觉", done: true }
+                    ],
+                    hobby: { title: "", done: false }
+                }
+
+            },
+            methods: {
+                add() {
+
+                    this.hobbies.push({
+                        title: this.hobby.title, done: false
+
+                    })
+                    this.hobby.title = ""
+                }
+
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
