@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2 @click="add">{{count}}*2={{double}}</h2>
+    </div>
+    <script>
+        const { ref, computed, methods } = Vue
+        let App = {
+            setup() {
+                // count相关模块
+                let count = ref(1);
+                const double = computed(() => count.value * 2)
+                function add() { count.value++ }
+                return { count, double, add }
+
+            }
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+
+</body>
+
+</html>
