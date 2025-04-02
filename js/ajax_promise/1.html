@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax_post</title>
+    <style>
+        ul,
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="members">
+
+    </ul>
+    <script>
+        // 函数, url, GET 新的API  基于peomise
+        // js 主动发起http 请求 fetch XMLHttpRequest
+        fetch('https://api.github.com/orgs/lemoncode/members')
+        // .then(res => res.json()) // JSON 异步
+        // .then(data => {
+        //     // console.log(res);
+        //     document.getElementById('members').innerHTML = data.map(member => `
+        //     <li>
+        //         <a href="${member.html_url}">${member.login}</a>
+        //     </li>
+        //     `).join('')
+
+        // })
+    </script>
+
+</body>
+
+</html>
