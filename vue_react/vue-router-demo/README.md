@@ -24,3 +24,30 @@
       - path  路径
       - name  名称
       - component  组件
+
+- 业务熟练度
+  - vue-router  语法细节
+    - routes 拆分 亮点  
+      [
+        /
+        / About  顶级路径
+        ...users //用户模块
+        ...posts // 文章模块
+      ]
+      展开运算符
+    - path,component
+     - name 有用
+     - props 路由传参 
+
+- 路由历史记录 history
+   router-link 而不是a 组件
+   router.push() 入栈
+   栈顶是当前的路由，显示当前组件 
+   前进，后退
+   导航 = url + history navigator
+
+- 实战开发
+  - sytlus
+    加速css开发
+    npm i -D stylus stylus 当前项目安装 stylus 包
+    省略{} :; 用tab 缩进代替
