@@ -1,13 +1,15 @@
 <template>
     <div>
-    <p>Mouse X: {{ x }}</p>
-    <p>Mouse Y: {{ y }}</p>
+    <p>Mouse X: {{ mousePos.x }}</p>
+    <p>Mouse Y: {{ mousePos.y }}</p>
     </div>
 </template>
 
 <script setup>
-import { useMouse } from '../hooks/useMouse' // 引入自定义hook
-const {x,y} = useMouse() // 解构出x,y
+import  {useMouse}  from '../hooks/useMouse' // 引入自定义hook
+
+const mousePos = useMouse() // 解构出x和y
+
 </script>
 
 <style  scoped>

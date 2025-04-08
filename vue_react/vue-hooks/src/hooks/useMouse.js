@@ -1,27 +1,26 @@
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, reactive } from "vue";
 
 export function useMouse() {
-    // 定义响应式变量 x 和 y 来存储鼠标的位置
-    const x = ref(0);
-    const y = ref(0);
 
-    // 定义鼠标移动的处理函数
-    const handleMouseMove = (event) => {
-        // 更新鼠标的 x 和 y 坐标
-        x.value = event.pageX;
-        y.value = event.pageY;
-    };
+    const mousePos = reactive({
+        x: 0,
+        y: 0
+    })
 
-    // 组件挂载时添加鼠标移动事件监听器
-    onMounted(() => {
-        window.addEventListener('mousemove', handleMouseMove);
-    });
-
-    // 组件卸载时移除鼠标移动事件监听器，防止内存泄漏
+    const mousePosHandler = (e) => {
+        mousePos.x = e.clientX
+        mousePos.y = e.clientY
+        console.log('我还在。。。')
+    }
+    //如果在组件销毁之前没有取消事件监听，那么事件处理函数仍然会被事件监听器引用。    
     onUnmounted(() => {
-        window.removeEventListener('mousemove', handleMouseMove);
-    });
-
-    // 返回鼠标的 x 和 y 坐标
-    return { x, y };
+        window.removeEventListener('mousemove', mousePosHandler)
+    })
+    onMounted(() => {
+        window.addEventListener('mousemove', mousePosHandler)
+    })
+    return mousePos
 }
+
+
+

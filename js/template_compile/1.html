@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板编译</title>
+</head>
+
+<body>
+    <script>
+        let template = `我是{{name}},年龄{{age}},性别{{sex}}`;
+        let person = {
+            name: '张三',
+            age: 18,
+            sex: '男'
+        }
+        let reg = /\{\{([a-z]+)\}\}/
+        // vue 挂载前 实例化过程 内存中 模板先编译 
+        function compile1(template, data) {
+            // 正则一个个字符匹配 
+            // ^从字符串的开始匹配
+            // 匹配{ 本身， 由于{} 正则的特殊含义 所以需要转义
+            // + 贪婪匹配一次或多次
+            // * 匹配零次或多次
+            // ? 匹配零次或一次
+            // () 分组 
+
+            while (reg.test(template)) {
+
+
+                //字符串上的match 
+                // console.log(template.match(reg));
+                let key = reg.exec(template)[1]
+                let value = data[key];
+                // 正则替换 {{}}
+
+                template = template.replace(reg, value)
+
+            }
+            return template
+        }
+
+        function compile2(template, data) {
+            return template.replace(reg, (match, key) => {
+                return data[key]
+            })
+        }
+
+        function compile3(template, data) {
+            if (reg.test(template)) {
+                const name = reg.exec(template)[1];
+                const value = data[name];
+                template = template.replace(reg, value);
+                return compile3(template, data)
+            }
+            return template
+
+        }
+        console.log(compile3(template, person));
+    </script>
+
+</body>
+
+</html>
