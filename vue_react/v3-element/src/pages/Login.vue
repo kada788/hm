@@ -23,6 +23,8 @@
 <script setup>
 import {ref} from 'vue'
 import {reactive} from 'vue'
+import {login} from '../api/index.js'
+import { Loading } from 'element-plus/es/components/loading/src/service.mjs'
 
 const formRef = ref(null)
 const form = reactive({
@@ -40,9 +42,20 @@ const rules = {
   ] 
 }
 const loading = ref(false);
-const onSubmit = async () => {
-    console.log(formRef.value)
-    await formRef.value.validate()
+const onSubmit = async (valid) => {
+   
+    loading.value = true;
+    // 账号，密码数据库是否匹配
+    // 发送给前端一个凭证 token
+    // 以后的请求 都需要携带这个凭证
+    // 服务器解析凭证 得到用户对象
+
+    if (valid) {
+      await login(form)
+      .then(res=>{
+        console.log(res)
+      })
+    }
      
 }
 </script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档碎片</title>
+</head>
+
+<body>
+    <div class="container"></div>
+
+
+    <script>
+        const container = document.querySelector('.container');
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < 100; i++) {
+            const div = document.createElement('div');
+            div.textContent = `item${i}`;
+            fragment.appendChild(div);
+        }
+        container.appendChild(fragment);
+    </script>
+</body>
+
+</html>
